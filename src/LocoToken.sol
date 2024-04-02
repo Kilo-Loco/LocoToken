@@ -20,7 +20,8 @@ contract LocoToken is ERC20 {
         if (msg.sender != i_owner) {
             revert NotOwnerError();
         }
-        _transfer(msg.sender, faucetAddress, amount);
+        _approve(address(this), faucetAddress, amount);
+        _transfer(address(this), faucetAddress, amount);
     }
 
     function getOwner() external view returns (address) {
